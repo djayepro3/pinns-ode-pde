@@ -4,7 +4,10 @@ A weight hangs from a spring and bounces, and each bounce is a little smaller th
 
 A neural network trained on those measurements alone cannot tell us. A network that is also trained to obey the equation of motion can. This project shows that difference, step by step, and lets you watch it happen as the networks train.
 
-![Training animation: data-only network vs PINN](PINN ODE/2D ODE Damped Harmonic Osc/media/damped_oscillator_training_from_mp4.gif)
+<p align="center">
+  <img src="PINN ODE/2D ODE Damped Harmonic Osc/media/damped_oscillator_training_from_mp4.gif" alt="Training animation: data-only network vs PINN" width="100%">
+</p>
+
 
 *Left: a network that sees only the data. Right: a network that sees the data and the equation. Both start from the same random weights.*
 
