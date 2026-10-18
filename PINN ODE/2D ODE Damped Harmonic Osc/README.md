@@ -97,11 +97,16 @@ Run times on an ordinary laptop CPU, with no GPU needed:
 
 ## A few things worth knowing
 
-- **Gradient check.** Part A includes a test that compares the hand-written gradients, including the second-derivative path, against numerical estimates. They agree to better than one part in a hundred million.
-- **Our own choices.** The equation residual is divided by `k`, and the velocity error by the natural frequency, so every loss term is on the scale of a position and the weights can stay near 1. The learning rate shrinks from 0.003 to 0.0001 over training. The summary section lists these choices and the reason for each.
-- **Oscillations are harder than the ball.** Two and a half swings are noticeably harder to learn than a parabola. That is why this example needs 20,000 epochs, and why PINNs struggle more as the number of swings grows. The notebook says so openly and points to the research on it.
-- **A classical solver would be faster.** For an equation this simple, a standard integrator is quicker and more accurate. A PINN is worth it when data and equations must be combined, when constants are unknown, or when the problem is a PDE.
-- **Random seeds.** Both parts fix their seeds, so reruns give the same numbers on the same machine.
+- **Gradient check.** <br>
+Part A includes a test that compares the hand-written gradients, including the second-derivative path, against numerical estimates. They agree to better than one part in a hundred million.
+- **Our own choices.** <br>
+The equation residual is divided by `k`, and the velocity error by the natural frequency, so every loss term is on the scale of a position and the weights can stay near 1. The learning rate shrinks from 0.003 to 0.0001 over training. The summary section lists these choices and the reason for each.
+- **Oscillations are harder than the ball.** <br>
+Two and a half swings are noticeably harder to learn than a parabola. That is why this example needs 20,000 epochs, and why PINNs struggle more as the number of swings grows. The notebook says so openly and points to the research on it.
+- **A classical solver would be faster.** <br>
+For an equation this simple, a standard integrator is quicker and more accurate. A PINN is worth it when data and equations must be combined, when constants are unknown, or when the problem is a PDE.
+- **Random seeds.** <br>
+Both parts fix their seeds, so reruns give the same numbers on the same machine.
 
 ## Things to try
 
