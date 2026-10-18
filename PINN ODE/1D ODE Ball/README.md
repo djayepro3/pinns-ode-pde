@@ -1,4 +1,4 @@
-# Solving a 1D ODE with a Physics-Informed Neural Network
+# Solving a First-Order ODE with a Physics-Informed Neural Network
 
 A ball is thrown straight up. We have 12 noisy height readings and we also know the physics behind the motion. This project shows how to use both together by training a small neural network whose loss function includes the differential equation.
 ls
