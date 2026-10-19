@@ -43,14 +43,24 @@ These numbers are from the NumPy run in Part A. They show the error of each fitt
 | PINN, physics checked at the 10 data times | 0.309 |
 | PINN, physics checked at 50 points | 0.096 |
 
+The results are shown below:
+
+<img src="https://github.com/djayepro3/pinns-ode-pde/blob/main/PINN%20ODE/1D%20ODE%20Ball/media/PINN_ODE_Ball_PartA.png" width="100%">
+
 The main lesson is that *where* you enforce the equation matters. Checking it only at the measurement times leaves the network free to wiggle in between. Checking it on a denser set of times, which costs no extra measurements, gives a much better fit.
 
-This is one noise sample and one random start, so read the table as an illustration and not a benchmark. Part B runs the same comparison in PyTorch; its numbers will differ slightly because of different starting weights and float32 arithmetic.
+Part B runs the same comparison in PyTorch; its numbers will differ slightly because of different starting weights and float32 arithmetic. Part B results are shown below:
 
-Part B results are shown below:
+| Model | Error |
+|---|---|
+| The noisy data itself | 0.677 |
+| Network trained on data only | 0.719 |
+| PINN, physics checked at the 10 data times | 0.172 |
+| PINN, physics checked at 50 points | 0.096 |
 
-<img src="https://github.com/djayepro3/pinns-ode-pde/tree/main/PINN%20ODE/1D%20ODE%20Ball/media/PINN_ODE_Ball.png" width="100%">
+<img src="https://github.com/djayepro3/pinns-ode-pde/blob/main/PINN%20ODE/1D%20ODE%20Ball/media/PINN_ODE_Ball.png" width="100%">
 
+This is one noise sample and one random start, so read the table as an illustration and not a benchmark. 
 
 ## How to run it
 
