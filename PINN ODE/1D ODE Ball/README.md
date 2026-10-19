@@ -47,6 +47,11 @@ The main lesson is that *where* you enforce the equation matters. Checking it on
 
 This is one noise sample and one random start, so read the table as an illustration and not a benchmark. Part B runs the same comparison in PyTorch; its numbers will differ slightly because of different starting weights and float32 arithmetic.
 
+Part B results are shown below:
+
+<img src="https://github.com/djayepro3/pinns-ode-pde/tree/main/PINN%20ODE/1D%20ODE%20Ball/media/PINN_ODE_Ball.png" width="100%">
+
+
 ## How to run it
 
 You need Python 3.9 or newer.
