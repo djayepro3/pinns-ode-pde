@@ -8,8 +8,6 @@ In this project a neural network learns the solution **using only the equation a
 
 <img src="https://github.com/djayepro3/pinns-ode-pde/blob/main/PINN%20ODE/3D%20ODE%20Blasius%20Boundary%20Layer/media/boundary_layer.gif" width="100%">
 
-/home/djayepro/Documents/PINN/pinns-ode-pde/PINN ODE/3D ODE Blasius Boundary Layer/media/
-
 *Both networks solve the same equation from the same random weights. Left: a plain random start, which gets stuck on a wrong answer. Right: a start with a short warm-up, which finds the Blasius profile. Top: the velocity profile. Middle: the boundary layer over the plate, as the network sees it. Bottom: the network's wall slope against the exact value.*
 
 This is the third project in a small series on physics-informed neural networks for ordinary differential equations. The first was a first-order equation (a thrown ball), the second a second-order one (a damped oscillator). Here the equation is **third-order**, and three things are new:
