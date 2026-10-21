@@ -15,7 +15,7 @@ With only gravity acting, the height of the ball follows
 dh/dt = v0 - g*t,      h(0) = h0
 ```
 
-which has the exact solution `h(t) = h0 + v0*t - 0.5*g*t^2`. We use `g = 9.81`, `h0 = 3` and `v0 = 9`, and generate ten "measurements" between 0 and 2.1 seconds by adding noise to the exact curve.
+which has the exact solution `h(t) = h0 + v0*t - 0.5*g*t^2`. We use `g = 9.81`, `h0 = 3` and `v0 = 9`, and generate 12 "measurements" between 0 and 2.1 seconds by adding noise to the exact curve.
 
 A network trained on the data alone ends up following the noise. A PINN adds two more terms to the loss, one for the equation and one for the starting height, so the fitted curve stays close to what the physics allows.
 
@@ -47,7 +47,7 @@ The results are shown below:
 
 <img src="https://github.com/djayepro3/pinns-ode-pde/blob/main/PINN%20ODE/1D%20ODE%20Ball/media/PINN_ODE_Ball_PartA.png" width="100%">
 
-The main lesson is that *where* you enforce the equation matters. Checking it only at the measurement times leaves the network free to wiggle in between. Checking it on a denser set of times, which costs no extra measurements, gives a much better fit.
+Enforcing the ODE only at the measurement times constrains the network at those points but does not guarantee that the residual remains small between them. Enforcing it at 50 collocation points provides denser physics constraints without requiring additional measurements, although it increases the computational cost of training.
 
 Part B runs the same comparison in PyTorch; its numbers will differ slightly because of different starting weights and float32 arithmetic. Part B results are shown below:
 
@@ -79,9 +79,9 @@ The notebook runs in a few minutes on an ordinary laptop CPU, and no GPU is need
 
 ## A few things worth knowing
 
-- **Gradient check.** Part A includes a test that compares the hand-written gradients against numerical estimates. They agree to about one part in a million.
+- **Gradient check.** Part A includes a finite-difference gradient check. The largest reported relative discrepancy is approximately $1.27\times10^{-6}$, supporting the correctness of the hand-derived gradients at the tested parameter values and initialisation.
 - **Loss spikes.** With Adam at learning rate 0.01, the loss occasionally jumps for a short while and then recovers. This is normal for this setting.
-- **Random seeds.** Both parts fix their seeds, so reruns give the same numbers on the same machine.
+- **Random seeds.** Both parts fix their data-generation and initialisation seeds. The numerical results should be reproducible in the same software environment, although differences in library versions, hardware and floating-point operations can affect the final values.
 
 ## References
 
