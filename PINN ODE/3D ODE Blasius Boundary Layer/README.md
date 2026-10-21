@@ -65,7 +65,7 @@ The error in the velocity profile is about 9 x 10^-5. The momentum integral also
 | 0, 1, 3, 5 | about 0.332 | 2 x 10^-4 to 6 x 10^-4 | solved |
 | 2, 4 | about -0.12 to -0.13 | 0.84 to 0.88 | stuck |
 
-The function `f = 0` satisfies the equation and the wall conditions, and breaks only the far-field condition. A stuck network settles into a compromise near that useless solution. Which seeds get stuck depends on the settings, so read "2 out of 6" as an illustration and not as a failure rate. A stuck run also fails the momentum check, so you can spot it without knowing the right answer.
+A stuck network ends in a smooth profile that dips below zero and climbs to 1 at the far edge. It meets all three boundary conditions but not the equation, with a wall slope of about -0.13 and a loss thousands of times higher than a solved run. The same state showed up for different seeds, network widths and training lengths. Which seeds get stuck depends on the settings, so read "2 out of 6" as an illustration and not as a failure rate. A stuck run also fails the momentum check, so you can spot it without knowing the right answer.
 
 **3. A warm start fixes it.** Before switching the physics on, we train the network for 500 epochs to follow a rough sketch of the velocity profile, `f' = 1 - exp(-eta/2)`. For seed 2, which got stuck from a cold start, the warm start reaches a wall slope of 0.33215 with a profile error of about 9 x 10^-5.
 
@@ -116,7 +116,7 @@ Run times on an ordinary laptop CPU, with no GPU needed:
 - **Gradient check.** Part A includes a test that compares the hand-written gradients, including the path through the third derivative, against numerical estimates. They agree to a few parts in a million.
 - **A solver, not a curve fit.** There are no data in the main experiment. The reference solution is computed with a classical method (one run of a standard integrator plus a rescaling), and only used to judge the network.
 - **Our own choices.** The far edge of the domain stands in for infinity at `eta = 8`, the equation is checked at 200 points, and the learning rate falls from 0.003 to 0.0001. The summary section lists these and the reason for each.
-- **Things that did not work in our quick tests.** Giving the far-field condition ten or a hundred times more weight did not rescue a stuck run. Building the wall conditions into the network by writing `f = eta^2 * N(eta)` also got stuck in our one test. We did not investigate further.
+- **What did not cure the trap on its own.** Giving the far-field condition 10 or 100 times more weight did not rescue a stuck run, because that condition is already met in a stuck run. Building the wall conditions into the network with `f = eta^2 * N(eta)` (section A10b) changed which seeds got stuck but did not remove the trap. With the warm-up, that version solved all three seeds we tried, slightly less accurately. Longer training and other optimisers were not tried.
 - **Limits of the model.** The Blasius solution holds for steady, laminar flow with no pressure gradient, up to a Reynolds number of about 5 x 10^5. Part B shows the case with a pressure gradient (Falkner-Skan flows).
 - **A classical solver is faster.** For this equation, a standard method is quicker and more accurate. A PINN is worth it when data and equations must be combined, when constants are unknown, or when the problem is a PDE.
 - **Random seeds.** Both parts fix their seeds. PyTorch and NumPy draw different random numbers, so which seeds get stuck can differ between Part A and Part B.
@@ -128,6 +128,7 @@ Run times on an ordinary laptop CPU, with no GPU needed:
 - Make the warm-up guess worse and see whether it still helps.
 - Move the measurement window away from the wall, or add more noise, and watch the inverse problem degrade.
 - Try flow that slows down along the surface (`m < 0` in Part B) and look for the point where the wall slope reaches zero.
+- Switch to the $$f = eta^2 * N(eta)$$ form and compare cold and warm starts (Section A10b does this).
 
 ## References
 
