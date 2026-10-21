@@ -8,7 +8,7 @@ The projects are ordered by the **order of the equation**, meaning the highest d
 
 | Project | Equation | Order | Type of problem | Data used? | What is new |
 |---|---|---|---|---|---|
-| [1D Ball](1D%20Ball/) | $\frac{dh}{dt} = v0 - g t$ | 1st | Initial-value | Yes, noisy readings | The basic idea: add the equation to the loss so the network stops following noise |
+| [1D Ball](1D%20Ball/) | $\frac{dh}{dt} = v_{0} - g t$ | 1st | Initial-value | Yes, noisy readings | The basic idea: add the equation to the loss so the network stops following noise |
 | [2D Damped Harmonic](2D%20Damped%20Harmonic/) | $m x'' + c x' + k x = 0$ | 2nd | Initial-value | Yes, noisy readings from a short window | Second derivatives, two initial conditions, predicting beyond the data, an energy check, a training video |
 | [3D Blasius Flow](3D%20Blasius%20Flow/) | $f''' + 0.5 f f'' = 0$ | 3rd | Boundary-value | No, the equation is solved on its own | Third derivatives, conditions in two places, a failure mode and its fix, an inverse problem from real-style measurements |
 
