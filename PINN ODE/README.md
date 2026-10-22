@@ -1,5 +1,7 @@
 # Physics-Informed Neural Networks for Ordinary Differential Equations
 
+**Author:** Dishanand Jayeprokash
+
 This folder holds a small series of hands-on projects that teach a neural network the physics behind an ordinary differential equation (ODE). Each project solves a real problem from physics or engineering, and each one is built twice: once **from scratch with NumPy**, so you can see exactly what happens inside, and once with **PyTorch**, using the tools people use in practice.
 
 The projects are ordered by the **order of the equation**, meaning the highest derivative it contains. Each one adds something new, so they are best read in order.
