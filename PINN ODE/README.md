@@ -84,10 +84,6 @@ To make the MP4 files for the videos you also need `ffmpeg`. If it is missing, t
 
 Each notebook takes a few minutes to run in Part A and longer in Part B, because differentiating through a network several times is slower than a plain forward pass. The project READMEs give rough times.
 
-## What comes next
-
-These projects deal with equations that depend on a single variable. The next step is **partial differential equations**, where the unknown depends on space and time together. Those projects live in the [PINN PDE](../PINN%20PDE/) folder.
-
 ## Main references
 
 1. M. Raissi, P. Perdikaris, G. E. Karniadakis. *Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations.* Journal of Computational Physics, 378, 686-707 (2019).
